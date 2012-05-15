@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:14px;
+	color:#FFFFFF;
+	background-color:#333;
+	}
+h1{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:50px;
+	text-align:center;
+	}
+#my_div{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:40px;
+	text-align:center;
+	}
+	
+#clue{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:16px;
+	text-align:center;
+	}
+#submitclue{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:14px;
+	text-align:center;
+	}
+#scores{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:16px;
+	text-align:right;
+	}

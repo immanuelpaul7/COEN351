@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+<!--
+//preload images
+var image1=new Image()
+image1.src="images/20macintoshcouch.jpeg"
+var image2=new Image()
+image2.src="images/BeagleDoubleFeeder.lg.jpg"
+var image3=new Image()
+image3.src="images/catclock.jpg"
+var image4=new Image()
+image4.src="images/chair.jpeg"
+var image5=new Image()
+image5.src="images/cellphonepicture.jpeg"
+var image6=new Image()
+image6.src="images/circuitboard-coasters-md.jpg"
+var image7=new Image()
+image7.src="images/JunkyardAnteater.lg.jpg"
+var image8=new Image()
+image8.src="images/JunkyardGiraffe.lg.jpg"
+var image9=new Image()
+image9.src="images/JunkyardGolfingCat.sm.jpg"
+var image10=new Image()
+image10.src="images/k1fluffkttn.lg.jpg"
+var image11=new Image()
+image11.src="images/k9scaredycat.sm.jpg"
+var image12=new Image()
+image12.src="images/record-clock-md.jpg"
+var image13=new Image()
+image13.src="images/sciencefictionmask.jpeg"
+var image14=new Image()
+image14.src="images/sneakers.jpeg"
+var image15=new Image()
+image15.src="images/stadium.jpeg"
+
+//-->
+</script>
+</head>
+<body>
+<a href="javascript:slidelink()">
+<img src="firstcar.gif" name="slide"  style="border-color:#000" border="2" width="200" height="200" /></a>
+<script type="text/javascript">
+<!--
+var step=1
+var whichimage=1
+function slideit(){
+if (!document.images)
+return
+document.images.slide.src=eval("image"+step+".src")
+whichimage=step
+if (step<15)
+step++
+else
+step=1
+setTimeout("slideit()",1800)
+}
+slideit()
+function slidelink(){
+if (whichimage==1)
+window.location="link1.htm"
+else if (whichimage==2)
+window.location="link2.htm"
+else if (whichimage==3)
+window.location="link3.htm"
+}
+//-->
+</script>
+</body>
+</html>

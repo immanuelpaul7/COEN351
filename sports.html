@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="test.css" /> 
+
+<title>Sports</title>
+
+<script type="text/javascript" src="words.js">
+</script>
+<script type="text/javascript">
+//<![CDATA[
+var cluelabel;//Global variables decleration
+var total;
+var finalscore;
+var hiddenString;
+var randArray=new Array();
+var randArrayCount;
+var questionNumber;
+var tim;
+var lft;
+function callfunc()//To allow only lowercase characters to be entered into the text boxes
+{
+
+
+	for(var i=0;i<hiddenString.length;i++)
+	{
+		if(hiddenString[i]=="_")
+		{
+			var textBoxName="mytext"+i;
+			var value=document.getElementById(textBoxName).value;
+			value=value.replace(/[^a-z]/g, '');//The regular expression to allow lower case characters only 
+			document.getElementById(textBoxName).value=value;
+		}
+	}
+}
+function pageLoad()//The functions to call and the variables to be set on pageload
+{
+	finalscore=0;
+	randArrayCount=0;
+	callRandom();
+	questionNumber=0;
+	lft=0;
+	sample();
+
+}
+function callRandom()//to store a set of random numbers into an array
+{
+	if(randArrayCount<10)
+	{
+	var randomNumber=Math.floor(Math.random() *10);
+	var flag=false;
+	for(var count=0;count<randArrayCount;count++)//for creating an array of random numbers
+	{
+		if(randArray[count]==randomNumber)
+		{
+			flag=true;
+			break;
+		}
+	}
+	if(flag==false)
+	{
+		randArray[randArrayCount++]=randomNumber;
+	}
+	callRandom();
+	}
+	else
+	{
+		return;
+	}
+}
+function sample()//For getting the words and clues from words.js and inserting text boxes in place of some letters for the player to enter into.
+{
+
+	if(questionNumber<10)
+	{
+		
+		hiddenString="";		
+		var rand=randArray[questionNumber++]; 
+		document.getElementById("questionNumber").innerHTML="Question Number: "+questionNumber+"/10";
+		var str,i,j;
+		eachword=sports[rand].word;//words from words.js are read into the varialble eachword
+		originalword=eachword;
+		eachclue=sports[rand].clue;//clues of relative words from words.js are read into the varialble eachword
+		cluelabel=eachclue;
+		function setcharacter(a,b,c)
+		{
+    	if(b > a.length) return str;
+	    return a.substr(0,b) + c + a.substr(b+1);
+		}
+
+		for(i=0;i<eachword.length/2;i++)
+		{
+		rand1 = Math.floor(Math.random() *eachword.length);
+		eachword= setcharacter( eachword, rand1, '_');
+		}
+		var betweenChars = ' '; // a space.
+		eachword1=(eachword.split('').join(betweenChars));
+		document.getElementById("my_div").innerHTML="";
+		hiddenString=eachword;
+		var root=document.getElementById("my_div");
+		for(var i=0;i<eachword.length;i++)//For inserting textboxes inplace of _.
+		{
+		if(eachword[i]=='_')
+		{	
+		inp=document.createElement('input');
+		inp.setAttribute('type','text');
+		inp.setAttribute('id','mytext'+i);
+		inp.setAttribute('size',1);
+		inp.setAttribute('width',1);
+		inp.setAttribute('maxlength',1);
+		inp.setAttribute('onkeyup','callfunc()');
+		root.appendChild(inp);
+		}
+		else
+		{
+		document.getElementById("my_div").innerHTML+=""+eachword[i]+"";
+		}
+		}
+		document.getElementById("cluetext").innerHTML="";
+		t=setTimeout("stringCompare()",30000);//for setting the timer to 30seconds for each word.
+		var userWidth = window.screen.width;
+		moveRight();//call the animation function for the image to move right.
+		
+
+	}
+	else
+	{
+		document.getElementById("my_div").innerHTML="";
+		
+		var finalmsg="Game Over"+"\n"+"The final score: "+finalscore+"\n"+"The total number of questions answered: "+questionNumber+"\n"+				        "Correctly answered questions: "+finalscore/10;
+		alert(finalmsg);
+				window.location = "index.html";
+		
+	}
+}
+function moveRight()// Used for moving the image from left to right for 30seconds from position 400px(it is actually 350px, but the image width is 50px) to 1000px(actually upto 950px). ie the image is moved at 20px per second, hence in 30 seconds it moves 600pixels.
+{
+	if(lft<=650)//for the image which should be moved from 350px to 700px(image width is 50px).  
+	{
+		var animation=document.getElementById("soare");
+	animation.setAttribute('src','images/bike.jpg');
+	
+	
+	}
+	else
+	{
+		var animation=document.getElementById("soare");
+	animation.setAttribute('src','time_ending.png');
+	
+	}
+		var pp = document.getElementById("soare");
+	 	lft = parseInt(pp.style.left);
+		tim = setTimeout("moveRight()",1000);  // 1000 controls the speed.
+		lft = lft+20;  // move by 20 pixels.
+		pp.style.left = lft+"px";
+	}
+
+function stringCompare()//To compare the word entered by the player to the actual word.
+	{
+	clearTimeout(tim);//to clear the animation and bring it to the starting position once the submit button is pressed.
+		var pp = document.getElementById("soare");
+		pp.style.left=350+"px";
+		lft=0;
+	var finalstring="";
+	
+	for(var i=0;i<eachword.length;i++)
+	{
+		if(eachword[i]=="_")//gets the characters entered by the players in the textboxes by id.
+		{
+			var elementname='mytext'+i;
+			finalstring+=document.getElementById(elementname).value;//appends all the characters from the textboxes and forms a string.
+			
+		}
+		else
+		{
+			finalstring+=eachword[i];//for appending the static characters on the web-browser.
+		}
+	}
+	
+if(originalword===finalstring)//comparing the word entered by the player to the original word from words.js.
+	{
+		
+		 var score=10;//if match score for each question.
+		 finalscore=finalscore+score;//the final score.
+		 var image=document.getElementById("setImage");
+		 image.setAttribute('src','success.jpg');//if word match match then show this image
+		 
+	}
+	else{
+		 score=0;//score for each question if no match.
+		 var image=document.getElementById("setImage");
+		 image.setAttribute('src','wrong.png');// if word doesnot match then show this image
+		 finalscore=finalscore+score;//final score.
+		}
+		score1="Last question score: "+score;
+		document.getElementById("score").innerHTML=score1;
+		finalscore1="Your total score: "+finalscore;
+		document.getElementById("totalscore").innerHTML=finalscore1+"/100";
+		clearTimeout(t);//clear timer once the answer for that question is submitted by the user, so that we dont have multiple timers running at the same time.
+		sample();//calling the sample function when the word is submitted so that a new word is fetched and the timer and animation are reset.
+
+}
+function clue()//to display the clue of the corresponding word
+{
+	document.getElementById("cluetext").innerHTML=cluelabel;
+}
+function end(){
+		document.getElementById("my_div").innerHTML="";
+		var finalMsg="Game Over"+"\n"+"The final score is:"+finalscore+"\n"+"The total number of questions answered is:"+questionNumber+"\n"+"No of correctly answered questions:"+finalscore/10;
+		alert(finalMsg);
+		setTimeout("window.location = 'index.html';",10);
+	}
+//]]>
+
+
+</script>
+
+</head>
+
+<body onload="pageLoad()"><!--Calling the pageLoad function from the body tag-->
+<h1>Recycle Word Bin</h1>
+<h4 align="left" style="position:absolute;left:350px; ">||</h4><!--For the animation to start from this "||" position-->
+<img src="" alt="smiley" id="soare" width="50" style="position:absolute;left:350px; " height="60" /><!--for the image to start moving from 350px -->
+<h4 align="left" style="position:absolute;left:1000px;">||</h4><br /><br/><!--For the animation to end at "||" position-->
+<div id="my_div" style="position:relative;top:20px;"></div>
+
+<p id="eachword"></p>
+<form id="submitclue" action="" style="position:relative;top:20px;">
+<input type="button" value="submit" onclick="stringCompare()"></input>&nbsp;&nbsp;&nbsp;
+<input type="button" value="endgame" onclick="end()"/><!--To end the game and go back to the home page-->
+<br/><br/><br/><!--Submit button for submitting each word-->
+<input type="button" onclick="clue()"  value="clue"></input><!--clue button for getting the clue-->
+<p id="cluetext"></p><!--To show the clue for the corresponding word in the browser-->
+</form>
+<div id="scores"><!--To show the scores in the browser-->
+
+<img src="" id="setImage" alt="" width="100" height="100" align="right"/><br/><br/><br/><br/><br/><br/><!--image to be displayed when the player hits submit-->
+
+<table align="right" border="2">
+<tr>
+<td>
+<h3>Statistics</h3>
+<p id="questionNumber"></p><!--To dialay the question numbers-->
+<p id="score"></p>
+<p id="totalscore"></p>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
+
