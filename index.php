@@ -245,7 +245,7 @@ echo <<<HTML
 					<tr>
 					<td align="center"
 >
-						<a rel="nofollow" href="final.php" ><b style="color:green;text-shadow:0.5px 0.5px 0.5px ;font-size:24px">Home</b></a>
+						<a rel="nofollow" href="final.php" ><b style="color:green;text-shadow:0.5px 0.5px 0.5px ;font-size:24px"></b></a>
 					</td>
 					<td align="center"
 >
@@ -253,14 +253,14 @@ echo <<<HTML
 					</td>
 					<td align="center"
 >
-						<a rel="nofollow" href="forum.php?show"><b  style="color:green;text-shadow:0.5px 0.5px 0.5px #22A6B0 ;font-size:24px">Forum</b></a>
+						<a rel="nofollow" href="forum.php?show"><b  style="color:green;text-shadow:0.5px 0.5px 0.5px #22A6B0 ;font-size:24px"></b></a>
 					</td>
 					<td align="center"
 >
-						<a rel="nofollow" href="contact-us.php" ><b style="color:green;text-shadow:0.5px 0.5px 0.5px #22A6B0 ;font-size:24px">Contact us</b></a></td>
+						<a rel="nofollow" href="contact-us.php" ><b style="color:green;text-shadow:0.5px 0.5px 0.5px #22A6B0 ;font-size:24px"></b></a></td>
 					<td align="center"
 >
-						<a href="" ><b style="color:green;text-shadow:0.8px 0.8px 0.8px #22A6B0 ;font-size:24px">Games</b></a>
+						<a href="" ><b style="color:green;text-shadow:0.8px 0.8px 0.8px #22A6B0 ;font-size:24px"></b></a>
 					</td>
 					<td>
 					</td>
