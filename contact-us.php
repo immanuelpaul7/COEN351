@@ -26,7 +26,7 @@ echo <<<HTML
 <link href="SpryAssets/SpryValidationConfirm.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 a:link {
-	color: #7F5A00;
+	color: #6F5A00;
 }
 
 
