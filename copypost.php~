@@ -1,5 +1,4 @@
 <?php
-echo 1;
 function posted()
 {
 	if ( isset($_GET['posted'])) 
