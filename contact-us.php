@@ -1,6 +1,6 @@
 <?php
 session_start();
-exit();
+//exit();
 error_reporting(0);
 include("dbconfig.php");
 echo <<<HTML
