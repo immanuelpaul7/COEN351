@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 exit();
 error_reporting(0);
 include("dbconfig.php");
