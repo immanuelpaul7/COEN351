@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 error_reporting(0);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
