@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include ("wfcart.php");
 include("dbconfig.php");
 error_reporting(0);
